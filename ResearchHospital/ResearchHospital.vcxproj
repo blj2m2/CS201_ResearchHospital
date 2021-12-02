@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="DataReader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Patient.cpp" />
     <ClCompile Include="TransactionProcessing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataReader.h" />
+    <ClInclude Include="Patient.h" />
     <ClInclude Include="TransactionProcessing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

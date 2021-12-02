@@ -12,29 +12,87 @@ DataReader file;
 string fileName = "";
 
 
-void PrintMainMenu(char& option);
-void GetMenuOption(char& option);
-bool VerifyOption(char& option);
+void PrintMainMenu(char&);
+void PrintDepartmentMenu(string);
+void GetMenuOption(char&);
+bool VerifyOption(char&);
 
 
 int main()
 {
 	vector<vector<string>> v_records;
-	char options = '\0';
+	char option = '\0';
 	try
 	{
 		file.ImportFile(v_records, fileName);
-	}
-	catch (const std::exception&)
-	{
+		//Send data to process transaction
+		cout << endl;
+		do
+		{
+			//present the menu until the person select the Q option
+
+			PrintMainMenu(option);
+			GetMenuOption(option);
+
+			//if should happen on false condition
+			if (!VerifyOption(option))
+			{
+				cout << "Please chose one of the options from the menu." << endl << endl;
+				continue;
+			}
+			else
+			{
+				
+				vector < vector<string>> errorRecord;
 			
+				switch (option)
+				{
+				case '1':
+					//Print from the movie class - function needs to be written
+					cout << "Heart Clinic Processing" << endl << endl;
+					PrintDepartmentMenu("Heart Clinic");
+					break;
+				case '2':
+					//Print from the song class - function needs to be written
+					cout << "Lung Clinic Processing" << endl << endl;
+					PrintDepartmentMenu("Lung Clinic");
+					break;
+				case '3':
+					//Print from the move class - function needs to be written
+					cout << "Plastic Surgery Processing" << endl << endl;
+					PrintDepartmentMenu("Plastic Surgery");
+					break;
+				case 'Q':
+					cout << "Quit" << endl << endl;
+					break;
+
+				default:
+					break;
+				}
+			}
+
+		} while (option != 'Q');
 	}
+	catch (runtime_error& e)
+	{
+		cout << e.what() << endl << endl;
+	}
+	catch (invalid_argument& e)
+	{
+		cout << e.what() << endl << endl;
+	}
+	catch (out_of_range& e)
+	{
+		cout << e.what() << endl << endl;
+	}
+	
+
 }
 
 bool VerifyOption(char& option)
 {
 	bool cleanOption = false;
-	if (option != 1 && option != 2 && option != 3 && option != 4)
+	if (option != 49 && option != 50 && option != 51 && option != 52)
 	{
 
 		cleanOption = false;
@@ -54,15 +112,15 @@ void PrintMainMenu(char& option)
 	cout << "1: Heart Clinic" << endl;
 	cout << "2: Lung Clinic" << endl;
 	cout << "3: Plastic Surgery" << endl;
-	cout << "Quit" << endl;
+	cout << "4: Quit" << endl;
 
 }
 
-void PrintDepartmentMenu(char clinicType, char& departmentOption)
+void PrintDepartmentMenu(string clinicType)
 {
 	cout << endl;
 	cout << setw(20);
-	cout << "Welcome to the " << clinicType << "Clinic" << endl;
+	cout << "Welcome to the " << clinicType << endl;
 	cout << "1: Add Patient" << endl;
 	cout << "2: Add Critical Patient" << endl;
 	cout << "3: Take out Patient for Operation" << endl;
@@ -77,5 +135,5 @@ void GetMenuOption(char& option)
 	cin >> option;
 	cout << endl;
 	cin.clear();
-	option = toupper(option);
+	
 }
