@@ -54,111 +54,129 @@ int main()
 					//Print from the movie class - function needs to be written
 					cout << "Heart Clinic Processing" << endl << endl;
 					PrintDepartmentMenu("Heart Clinic");
-					GetMenuOption(option);
+					
 					//Department Menu
-					switch (option)
+					do
 					{
-						//Add Patient
-					case '1':
-						cout << "Add patient placeholder" << endl;
-						break;
-						//Add Critical Patient
-					case '2':
-						cout << "Add critical patient placeholder" << endl;
-						break;
-						//Take out Patient for Operation
-					case '3':
-						cout << "Take out patient for operation placeholder" << endl;
-						break;
-						//Cancel Patient
-					case '4':
-						cout << "Cancel patient placeholder" << endl;
-						break;
-						//List Patients in Queue
-					case '5':
-						cout << "List patients in queue placeholder" << endl;
-						break;
-					case '6':
-						//Change Patients in Queue or Exit
-						cout << "change patients in queue or exit placeholder" << endl;
-						break;
-					default:
-						break;
-					}
+
+						GetMenuOption(option);
+						switch (option)
+						{
+							//Add Patient
+						case '1':
+							cout << "Add patient placeholder" << endl;
+							break;
+							//Add Critical Patient
+						case '2':
+							cout << "Add critical patient placeholder" << endl;
+							break;
+							//Take out Patient for Operation
+						case '3':
+							cout << "Take out patient for operation placeholder" << endl;
+							break;
+							//Cancel Patient
+						case '4':
+							cout << "Cancel patient placeholder" << endl;
+							break;
+							//List Patients in Queue
+						case '5':
+							cout << "List patients in queue placeholder" << endl;
+							break;
+						case '6':
+							//Change Patients in Queue or Exit
+							cout << "change patients in queue or exit placeholder" << endl;
+							break;
+						default:
+							break;
+						}
+					} while (option != '6');
+					
+					
 					break;
 				case '2':
 					//Print from the song class - function needs to be written
 					cout << "Lung Clinic Processing" << endl << endl;
 					PrintDepartmentMenu("Lung Clinic");
-					GetMenuOption(option);
+					
 					//Department Menu
-					switch (option)
+					do
 					{
-						//Add Patient
-					case '1':
-						cout << "Add patient placeholder" << endl;
-						break;
-						//Add Critical Patient
-					case '2':
-						cout << "Add critical patient placeholder" << endl;
-						break;
-						//Take out Patient for Operation
-					case '3':
-						cout << "Take out patient for operation placeholder" << endl;
-						break;
-						//Cancel Patient
-					case '4':
-						cout << "Cancel patient placeholder" << endl;
-						break;
-						//List Patients in Queue
-					case '5':
-						cout << "List patients in queue placeholder" << endl;
-						break;
-					case '6':
-						//Change Patients in Queue or Exit
-						cout << "change patients in queue or exit placeholder" << endl;
-						break;
-					default:
-						break;
-					}			
+						GetMenuOption(option);
+						switch (option)
+						{
+							//Add Patient
+						case '1':
+							cout << "Add patient placeholder" << endl;
+							break;
+							//Add Critical Patient
+						case '2':
+							cout << "Add critical patient placeholder" << endl;
+							break;
+							//Take out Patient for Operation
+						case '3':
+							cout << "Take out patient for operation placeholder" << endl;
+							break;
+							//Cancel Patient
+						case '4':
+							cout << "Cancel patient placeholder" << endl;
+							break;
+							//List Patients in Queue
+						case '5':
+							cout << "List patients in queue placeholder" << endl;
+							break;
+						case '6':
+							//Change Patients in Queue or Exit
+							cout << "change patients in queue or exit placeholder" << endl;
+							break;
+						default:
+							break;
+						}
+					} while (option != '6');
+
 					break;
 				case '3':
 					//Print from the move class - function needs to be written
 					cout << "Plastic Surgery Processing" << endl << endl;
 					PrintDepartmentMenu("Plastic Surgery");
-					GetMenuOption(option);
+					
 					//Department Menu
-					switch (option)
+					do
 					{
-						//Add Patient
-					case '1':
-						cout << "Add patient placeholder" << endl;
-						break;
-						//Add Critical Patient
-					case '2':
-						cout << "Add critical patient placeholder" << endl;
-						break;
-						//Take out Patient for Operation
-					case '3':
-						cout << "Take out patient for operation placeholder" << endl;
-						break;
-						//Cancel Patient
-					case '4':
-						cout << "Cancel patient placeholder" << endl;
-						break;
-						//List Patients in Queue
-					case '5':
-						cout << "List patients in queue placeholder" << endl;
-						break;
-					case '6':
-						//Change Patients in Queue or Exit
-						cout << "change patients in queue or exit placeholder" << endl;
-						break;
-					default:
-						break;
-					}
+						GetMenuOption(option);
+						switch (option)
+						{
+							//Add Patient
+						case '1':
+							cout << "Add patient placeholder" << endl;
+							break;
+							//Add Critical Patient
+						case '2':
+							cout << "Add critical patient placeholder" << endl;
+							break;
+							//Take out Patient for Operation
+						case '3':
+							cout << "Take out patient for operation placeholder" << endl;
+							break;
+							//Cancel Patient
+						case '4':
+							cout << "Cancel patient placeholder" << endl;
+							break;
+							//List Patients in Queue
+						case '5':
+							cout << "List patients in queue placeholder" << endl;
+							break;
+						case '6':
+							//Change Patients in Queue or Exit
+							cout << "change patients in queue or exit placeholder" << endl;
+							break;
+						default:
+							break;
+						}
+					} while (option != '6');
+
+
 					break;
-				case 'Q':
+				case '4':
 					cout << "Quit" << endl << endl;
 					break;
 
@@ -167,7 +185,7 @@ int main()
 				}
 			}
 
-		} while (option != 'Q');
+		} while (option != '4');
 	}
 	catch (runtime_error& e)
 	{

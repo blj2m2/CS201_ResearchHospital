@@ -50,7 +50,7 @@ string DataReader::OpenFile(string fileName, vector<vector<string>>& v_records)
 void DataReader::ImportFile(vector<vector<string>>& v_records, string& fileData)
 {
 	//string file;
-	cout << "Please enter the file name that should be used for Import (ex. medialist.csv):  ";
+	cout << "Please enter the file name that should be used for Import (ex. patient.csv):  ";
 	if (!cin)
 	{
 		throw runtime_error("The file name or path you entered was incorrect.");
