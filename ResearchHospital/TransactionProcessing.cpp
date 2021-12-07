@@ -65,7 +65,7 @@ void Transaction::PrintTransactionSummary()
 {
 	cout << setw(50);
 	cout << " Hospital Transaction Listing" << endl;
-	cout << "Movies:" << endl;
+	//This can be split into types if necessary
 	cout << setw(15) << "Transaction ID " << setw(20) << "Transaction Type " << setw(25) << "Transaction Status " << setw(47) << "Transaction Desc. " << setw(27) << "Transaction Date/Time " << endl;
 	/*for (auto& i : v_transaction)
 	{
@@ -81,7 +81,7 @@ void Transaction::PrintErrorLog()
 {
 	cout << setw(50);
 	cout << "Transaction Error Log" << endl;
-	cout << "Movies:" << endl;
+	//This can be split into types if necessary
 	cout << setw(15) << "Transaction ID" << setw(20) << "Transaction Type" << setw(25) << "Transaction Status" << setw(67) << "Transaction Desc." << setw(27) << "Transaction Date/Time" << endl;
 	/*for (auto& i : v_transaction)
 	{
