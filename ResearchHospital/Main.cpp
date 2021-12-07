@@ -6,6 +6,7 @@
 #include <vector>
 #include "DataReader.h"
 #include "TransactionProcessing.h"
+#include "Patient.h"
 
 using namespace std;
 DataReader file;
@@ -17,6 +18,9 @@ void PrintDepartmentMenu(string);
 void GetMenuOption(char&);
 bool VerifyOption(char&);
 
+Patient patient;
+Transaction transaction;
+
 
 int main()
 {
@@ -25,7 +29,8 @@ int main()
 	try
 	{
 		file.ImportFile(v_records, fileName);
-		//Send data to process transaction
+		transaction.ProcessFileData(v_records, patient);
+		
 		cout << endl;
 		do
 		{
@@ -41,9 +46,7 @@ int main()
 				continue;
 			}
 			else
-			{
-				
-				vector < vector<string>> errorRecord;
+			{			
 			
 				switch (option)
 				{
@@ -51,16 +54,109 @@ int main()
 					//Print from the movie class - function needs to be written
 					cout << "Heart Clinic Processing" << endl << endl;
 					PrintDepartmentMenu("Heart Clinic");
+					GetMenuOption(option);
+					//Department Menu
+					switch (option)
+					{
+						//Add Patient
+					case '1':
+						cout << "Add patient placeholder" << endl;
+						break;
+						//Add Critical Patient
+					case '2':
+						cout << "Add critical patient placeholder" << endl;
+						break;
+						//Take out Patient for Operation
+					case '3':
+						cout << "Take out patient for operation placeholder" << endl;
+						break;
+						//Cancel Patient
+					case '4':
+						cout << "Cancel patient placeholder" << endl;
+						break;
+						//List Patients in Queue
+					case '5':
+						cout << "List patients in queue placeholder" << endl;
+						break;
+					case '6':
+						//Change Patients in Queue or Exit
+						cout << "change patients in queue or exit placeholder" << endl;
+						break;
+					default:
+						break;
+					}
 					break;
 				case '2':
 					//Print from the song class - function needs to be written
 					cout << "Lung Clinic Processing" << endl << endl;
 					PrintDepartmentMenu("Lung Clinic");
+					GetMenuOption(option);
+					//Department Menu
+					switch (option)
+					{
+						//Add Patient
+					case '1':
+						cout << "Add patient placeholder" << endl;
+						break;
+						//Add Critical Patient
+					case '2':
+						cout << "Add critical patient placeholder" << endl;
+						break;
+						//Take out Patient for Operation
+					case '3':
+						cout << "Take out patient for operation placeholder" << endl;
+						break;
+						//Cancel Patient
+					case '4':
+						cout << "Cancel patient placeholder" << endl;
+						break;
+						//List Patients in Queue
+					case '5':
+						cout << "List patients in queue placeholder" << endl;
+						break;
+					case '6':
+						//Change Patients in Queue or Exit
+						cout << "change patients in queue or exit placeholder" << endl;
+						break;
+					default:
+						break;
+					}			
 					break;
 				case '3':
 					//Print from the move class - function needs to be written
 					cout << "Plastic Surgery Processing" << endl << endl;
 					PrintDepartmentMenu("Plastic Surgery");
+					GetMenuOption(option);
+					//Department Menu
+					switch (option)
+					{
+						//Add Patient
+					case '1':
+						cout << "Add patient placeholder" << endl;
+						break;
+						//Add Critical Patient
+					case '2':
+						cout << "Add critical patient placeholder" << endl;
+						break;
+						//Take out Patient for Operation
+					case '3':
+						cout << "Take out patient for operation placeholder" << endl;
+						break;
+						//Cancel Patient
+					case '4':
+						cout << "Cancel patient placeholder" << endl;
+						break;
+						//List Patients in Queue
+					case '5':
+						cout << "List patients in queue placeholder" << endl;
+						break;
+					case '6':
+						//Change Patients in Queue or Exit
+						cout << "change patients in queue or exit placeholder" << endl;
+						break;
+					default:
+						break;
+					}
 					break;
 				case 'Q':
 					cout << "Quit" << endl << endl;
@@ -124,9 +220,9 @@ void PrintDepartmentMenu(string clinicType)
 	cout << "1: Add Patient" << endl;
 	cout << "2: Add Critical Patient" << endl;
 	cout << "3: Take out Patient for Operation" << endl;
-	cout << "3: Cancel Patient" << endl;
-	cout << "3: List Patients in Queue" << endl;
-	cout << "3: Change Department or Exit" << endl;
+	cout << "4: Cancel Patient" << endl;
+	cout << "5: List Patients in Queue" << endl;
+	cout << "6: Change Department or Exit" << endl;
 }
 
 void GetMenuOption(char& option)
