@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Patient.h"
+
 
 using namespace std;
 
@@ -30,11 +32,10 @@ public:
 	void SetTransactionType(string);
 	void SetTransactionStatus(string);
 	void SetTransactionDescription(string);
-	vector<Transaction> v_transaction;
+	list<Transaction> transactionQueue;
 
 	void ProcessFileData(vector<vector<string>>&, Patient&);
 	bool FieldValidation();
-	void UpdateLog();
 	void PrintTransactionSummary();
 	void PrintErrorLog();
 	void AddTransactionToErrorLog();
