@@ -16,7 +16,7 @@ string fileName = "";
 void PrintMainMenu(char&);
 void PrintDepartmentMenu(string);
 void GetMenuOption(char&);
-bool VerifyOption(char&);
+bool VerifyOption(char&,string);
 
 Patient patient;
 Transaction transaction;
@@ -40,7 +40,7 @@ int main()
 			GetMenuOption(option);
 
 			//if should happen on false condition
-			if (!VerifyOption(option))
+			if (!VerifyOption(option, "hospital"))
 			{
 				cout << "Please chose one of the options from the menu." << endl << endl;
 				continue;
@@ -60,35 +60,44 @@ int main()
 					{
 
 						GetMenuOption(option);
-						switch (option)
+						if (!VerifyOption(option, "clinic"))
 						{
-							//Add Patient
-						case '1':
-							cout << "Add patient placeholder" << endl;
-							break;
-							//Add Critical Patient
-						case '2':
-							cout << "Add critical patient placeholder" << endl;
-							break;
-							//Take out Patient for Operation
-						case '3':
-							cout << "Take out patient for operation placeholder" << endl;
-							break;
-							//Cancel Patient
-						case '4':
-							cout << "Cancel patient placeholder" << endl;
-							break;
-							//List Patients in Queue
-						case '5':
-							cout << "List patients in queue placeholder" << endl;
-							break;
-						case '6':
-							//Change Patients in Queue or Exit
-							cout << "change patients in queue or exit placeholder" << endl;
-							break;
-						default:
-							break;
+							cout << "Please chose one of the options from the menu." << endl << endl;
+							continue;
 						}
+						else
+						{
+							switch (option)
+							{
+								//Add Patient
+							case '1':
+								cout << "Add patient placeholder" << endl;
+								break;
+								//Add Critical Patient
+							case '2':
+								cout << "Add critical patient placeholder" << endl;
+								break;
+								//Take out Patient for Operation
+							case '3':
+								cout << "Take out patient for operation placeholder" << endl;
+								break;
+								//Cancel Patient
+							case '4':
+								cout << "Cancel patient placeholder" << endl;
+								break;
+								//List Patients in Queue
+							case '5':
+								cout << "List patients in queue placeholder" << endl;
+								break;
+							case '6':
+								//Change Patients in Queue or Exit
+								cout << "change patients in queue or exit placeholder" << endl;
+								break;
+							default:
+								break;
+							}
+						}
+						
 					} while (option != '6');
 					
 					
@@ -101,36 +110,46 @@ int main()
 					//Department Menu
 					do
 					{
+
 						GetMenuOption(option);
-						switch (option)
+						if (!VerifyOption(option, "clinic"))
 						{
-							//Add Patient
-						case '1':
-							cout << "Add patient placeholder" << endl;
-							break;
-							//Add Critical Patient
-						case '2':
-							cout << "Add critical patient placeholder" << endl;
-							break;
-							//Take out Patient for Operation
-						case '3':
-							cout << "Take out patient for operation placeholder" << endl;
-							break;
-							//Cancel Patient
-						case '4':
-							cout << "Cancel patient placeholder" << endl;
-							break;
-							//List Patients in Queue
-						case '5':
-							cout << "List patients in queue placeholder" << endl;
-							break;
-						case '6':
-							//Change Patients in Queue or Exit
-							cout << "change patients in queue or exit placeholder" << endl;
-							break;
-						default:
-							break;
+							cout << "Please chose one of the options from the menu." << endl << endl;
+							continue;
 						}
+						else
+						{
+							switch (option)
+							{
+								//Add Patient
+							case '1':
+								cout << "Add patient placeholder" << endl;
+								break;
+								//Add Critical Patient
+							case '2':
+								cout << "Add critical patient placeholder" << endl;
+								break;
+								//Take out Patient for Operation
+							case '3':
+								cout << "Take out patient for operation placeholder" << endl;
+								break;
+								//Cancel Patient
+							case '4':
+								cout << "Cancel patient placeholder" << endl;
+								break;
+								//List Patients in Queue
+							case '5':
+								cout << "List patients in queue placeholder" << endl;
+								break;
+							case '6':
+								//Change Patients in Queue or Exit
+								cout << "change patients in queue or exit placeholder" << endl;
+								break;
+							default:
+								break;
+							}
+						}
+
 					} while (option != '6');
 
 					break;
@@ -142,36 +161,46 @@ int main()
 					//Department Menu
 					do
 					{
+
 						GetMenuOption(option);
-						switch (option)
+						if (!VerifyOption(option, "clinic"))
 						{
-							//Add Patient
-						case '1':
-							cout << "Add patient placeholder" << endl;
-							break;
-							//Add Critical Patient
-						case '2':
-							cout << "Add critical patient placeholder" << endl;
-							break;
-							//Take out Patient for Operation
-						case '3':
-							cout << "Take out patient for operation placeholder" << endl;
-							break;
-							//Cancel Patient
-						case '4':
-							cout << "Cancel patient placeholder" << endl;
-							break;
-							//List Patients in Queue
-						case '5':
-							cout << "List patients in queue placeholder" << endl;
-							break;
-						case '6':
-							//Change Patients in Queue or Exit
-							cout << "change patients in queue or exit placeholder" << endl;
-							break;
-						default:
-							break;
+							cout << "Please chose one of the options from the menu." << endl << endl;
+							continue;
 						}
+						else
+						{
+							switch (option)
+							{
+								//Add Patient
+							case '1':
+								cout << "Add patient placeholder" << endl;
+								break;
+								//Add Critical Patient
+							case '2':
+								cout << "Add critical patient placeholder" << endl;
+								break;
+								//Take out Patient for Operation
+							case '3':
+								cout << "Take out patient for operation placeholder" << endl;
+								break;
+								//Cancel Patient
+							case '4':
+								cout << "Cancel patient placeholder" << endl;
+								break;
+								//List Patients in Queue
+							case '5':
+								cout << "List patients in queue placeholder" << endl;
+								break;
+							case '6':
+								//Change Patients in Queue or Exit
+								cout << "change patients in queue or exit placeholder" << endl;
+								break;
+							default:
+								break;
+							}
+						}
+
 					} while (option != '6');
 
 
@@ -203,19 +232,37 @@ int main()
 
 }
 
-bool VerifyOption(char& option)
+bool VerifyOption(char& option, string optionType)
 {
-	bool cleanOption = false;
-	if (option != 49 && option != 50 && option != 51 && option != 52)
+	if (optionType == "hospital")
 	{
+		bool cleanOption = false;
+		if (option != 49 && option != 50 && option != 51 && option != 52)
+		{
 
-		cleanOption = false;
+			cleanOption = false;
+		}
+		else
+		{
+			cleanOption = true;
+		}
+		return cleanOption;
 	}
-	else
+	else if (optionType == "clinic")
 	{
-		cleanOption = true;
+		bool cleanOption = false;
+		if (option != 49 && option != 50 && option != 51 && option != 52 && option != 53 && option != 54)
+		{
+
+			cleanOption = false;
+		}
+		else
+		{
+			cleanOption = true;
+		}
+		return cleanOption;
 	}
-	return cleanOption;
+	
 }
 
 void PrintMainMenu(char& option)
