@@ -31,9 +31,15 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 		try
 		{
 			//local patients object
-			obj_patient.SetFirst(i[1]);
-			obj_patient.SetLast(i[2]);
-			obj_patient.SetSSN(i[3]);
+			//HC, PC, PS
+			if (i[0]== "HC")
+			{
+				obj_patient.SetFirst(i[1]);
+				obj_patient.SetLast(i[2]);
+				obj_patient.SetSSN(i[3]);
+				patients.patientQueue.at(0).push_back(obj_patient);
+			}
+
 
 
 			//Add patient obj_patient to vector of patients - this is stored in the patients that was 

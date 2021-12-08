@@ -11,10 +11,11 @@ class Patient
 {
   private:
   string first, last, ssn;
-  vector<vector<string>> patientQueue;
+  
   public:
   Patient();
-  Patient(string first_t, string last_t, string ssn_t, vector<vector<string>> patientQueue);
+  Patient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue);
+  vector<vector<Patient>> patientQueue;
 
   string GetFirst();
   string GetLast();
@@ -24,7 +25,7 @@ class Patient
   void SetFirst(string first_t);
   void SetLast(string last_t);
   void SetSSN(string ssn_t);
-  void SetPatientQueue(vector<vector<string>> patientQueue_t);
+  void SetPatientQueue(vector<vector<Patient>> patientQueue_t);
   
   void AddPatient();
   void AddCriticalPatient();
