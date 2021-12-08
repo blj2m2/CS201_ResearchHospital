@@ -32,7 +32,26 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 		{
 			//local patients object
 			//HC, PC, PS
+			//ssn check, type check, blank strings if first or last name is missing.
+			
+			//Heart Clinic
+			//Plastic Surgery
+			//Pulminary clinic
 			if (i[0]== "HC")
+			{
+				obj_patient.SetFirst(i[1]);
+				obj_patient.SetLast(i[2]);
+				obj_patient.SetSSN(i[3]);
+				patients.patientQueue.at(0).push_back(obj_patient);
+			}
+			if (i[0] == "PC")
+			{
+				obj_patient.SetFirst(i[1]);
+				obj_patient.SetLast(i[2]);
+				obj_patient.SetSSN(i[3]);
+				patients.patientQueue.at(0).push_back(obj_patient);
+			}
+			if (i[0] == "PS")
 			{
 				obj_patient.SetFirst(i[1]);
 				obj_patient.SetLast(i[2]);

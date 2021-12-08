@@ -20,7 +20,7 @@ class Patient
   string GetFirst();
   string GetLast();
   string GetSSN();
-  vector<vector<string>> GetPatientQueue();
+  vector<vector<Patient>> GetPatientQueue();
 
   void SetFirst(string first_t);
   void SetLast(string last_t);
