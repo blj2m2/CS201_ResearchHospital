@@ -33,8 +33,8 @@ void Patient::RemoveForOperation(){}
 //void Patient::CancelPatient(){}
 //if SSN does not exist write error
 //SSN exist - print patient info and status and remove from queue
-void Patient::CancelPatient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue){
-  string ssn;
+void Patient::CancelPatient(string clinic){
+  string ssn_t;
   bool f = false;
   int x;
 
