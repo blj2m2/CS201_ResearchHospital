@@ -32,14 +32,14 @@ public:
 	void SetTransactionType(string);
 	void SetTransactionStatus(string);
 	void SetTransactionDescription(string);
-	list<Transaction> transactionQueue;
+	vector <Transaction> transactionQueue;
 
-	void ProcessFileData(vector<vector<string>>&, Patient&);
+	void ProcessFileData(vector<vector<string>>&, Patient&, Transaction&);
 	bool FieldValidation();
-	void PrintTransactionSummary();
+	void PrintTransactionSummary(string);
 	void PrintErrorLog();
-	void AddTransactionToErrorLog();
-	void AddTransactionToLog();
+	void AddTransactionToErrorLog(string, string, string, Transaction&);
+	void AddTransactionToLog(string, string, string, Transaction&);
 
 
 

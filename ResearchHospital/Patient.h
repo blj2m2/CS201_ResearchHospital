@@ -34,7 +34,7 @@ class Patient
   void ListPatient();
   void ChangeDepartment();
   
-  void Patient::CancelPatient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue);
+  void CancelPatient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue);
 };
 
 

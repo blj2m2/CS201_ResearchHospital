@@ -29,7 +29,7 @@ int main()
 	try
 	{
 		file.ImportFile(v_records, fileName);
-		transaction.ProcessFileData(v_records, patient);
+		transaction.ProcessFileData(v_records, patient, transaction);
 		
 		cout << endl;
 		do
@@ -91,6 +91,18 @@ int main()
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
+								transaction.PrintTransactionSummary("HC");
+								cout << endl;
+								PrintDepartmentMenu("Heart Clinic");
+								break;
+							case '7':
+								//Change Patients in Queue or Exit
+								transaction.PrintErrorLog();
+								cout << endl;
+								PrintDepartmentMenu("Heart Clinic");
+								break;
+							case '8':
+								//Change Patients in Queue or Exit
 								cout << "change patients in queue or exit placeholder" << endl;
 								break;
 							default:
@@ -98,13 +110,13 @@ int main()
 							}
 						}
 						
-					} while (option != '6');
+					} while (option != '8');
 					
 					
 					break;
 				case '2':
 					//Print from the song class - function needs to be written
-					cout << "Lung Clinic Processing" << endl << endl;
+					cout << "Pulminary Clinic Processing" << endl << endl;
 					PrintDepartmentMenu("Lung Clinic");
 					
 					//Department Menu
@@ -143,6 +155,18 @@ int main()
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
+								transaction.PrintTransactionSummary("PC");
+								cout << endl;
+								PrintDepartmentMenu("Pulminary Clinic");
+								break;
+							case '7':
+								//Change Patients in Queue or Exit
+								transaction.PrintErrorLog();
+								cout << endl;
+								PrintDepartmentMenu("Pulminary Clinic");
+								break;
+							case '8':
+								//Change Patients in Queue or Exit
 								cout << "change patients in queue or exit placeholder" << endl;
 								break;
 							default:
@@ -150,7 +174,7 @@ int main()
 							}
 						}
 
-					} while (option != '6');
+					} while (option != '8');
 
 					break;
 				case '3':
@@ -194,6 +218,18 @@ int main()
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
+								transaction.PrintTransactionSummary("PS");
+								cout << endl;
+								PrintDepartmentMenu("Plastic Surgery Clinic");
+								break;
+							case '7':
+								//Change Patients in Queue or Exit
+								transaction.PrintErrorLog();
+								cout << endl;
+								PrintDepartmentMenu("Plastic Surgery Clinic");
+								break;
+							case '8':
+								//Change Patients in Queue or Exit
 								cout << "change patients in queue or exit placeholder" << endl;
 								break;
 							default:
@@ -201,7 +237,7 @@ int main()
 							}
 						}
 
-					} while (option != '6');
+					} while (option != '8');
 
 
 					break;
@@ -251,7 +287,7 @@ bool VerifyOption(char& option, string optionType)
 	else if (optionType == "clinic")
 	{
 		bool cleanOption = false;
-		if (option != 49 && option != 50 && option != 51 && option != 52 && option != 53 && option != 54)
+		if (option != 49 && option != 50 && option != 51 && option != 52 && option != 53 && option != 54 && option != 55 && option != 58)
 		{
 
 			cleanOption = false;
@@ -287,7 +323,9 @@ void PrintDepartmentMenu(string clinicType)
 	cout << "3: Take out Patient for Operation" << endl;
 	cout << "4: Cancel Patient" << endl;
 	cout << "5: List Patients in Queue" << endl;
-	cout << "6: Change Department or Exit" << endl;
+	cout << "6: Print Transaction Summary" << endl;
+	cout << "7: Print Error Log" << endl;
+	cout << "8: Change Department or Exit" << endl;
 }
 
 void GetMenuOption(char& option)

@@ -7,6 +7,7 @@
 #include "TransactionProcessing.h"
 
 Patient obj_patient;
+Transaction obj_transaction;
 
 void Transaction::SetTransactionType(string transactionType)
 {
@@ -23,7 +24,7 @@ void Transaction::SetTransactionDescription(string transactionDescription)
 	this->transactionDescription = transactionDescription;
 }
 
-void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& patients)
+void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& patients,Transaction& transaction)
 {
 	//process each record and upload data to transaction log
 	for (auto& i : records)
@@ -37,42 +38,58 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			//Heart Clinic
 			//Plastic Surgery
 			//Pulminary clinic
+			if (i[0]== "Q")
+			{
+				break;
+			}
 			if (i[0]== "HC")
 			{
 				obj_patient.SetFirst(i[1]);
 				obj_patient.SetLast(i[2]);
 				obj_patient.SetSSN(i[3]);
 				patients.patientQueue.at(0).push_back(obj_patient);
+				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+				string description = i[0] + " - " + i[1] + i[2];
+				AddTransactionToLog(rawData, description, i[0], transaction);
 			}
-			if (i[0] == "PC")
+			else if (i[0] == "PC")
 			{
 				obj_patient.SetFirst(i[1]);
 				obj_patient.SetLast(i[2]);
 				obj_patient.SetSSN(i[3]);
-				patients.patientQueue.at(0).push_back(obj_patient);
+				patients.patientQueue.at(1).push_back(obj_patient);
+				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+				string description = i[0] + " - " + i[1] + i[2];
+				AddTransactionToLog(rawData, description, i[0], transaction);
 			}
-			if (i[0] == "PS")
+			else if (i[0] == "PS")
 			{
 				obj_patient.SetFirst(i[1]);
 				obj_patient.SetLast(i[2]);
 				obj_patient.SetSSN(i[3]);
-				patients.patientQueue.at(0).push_back(obj_patient);
+				patients.patientQueue.at(2).push_back(obj_patient);
+				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+				string description = i[0] + " - " + i[1] + i[2];
+				AddTransactionToLog(rawData, description, i[0], transaction);
 			}
-
-
-
-			//Add patient obj_patient to vector of patients - this is stored in the patients that was 
-			// passed in by reference
-			//Add a new transaction to record process
-			//Add a new error if the transaction failed
-
+			else
+			{
+				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+				string description = i[0] + " - " + i[1] + i[2];
+				AddTransactionToErrorLog(rawData, description, i[0], transaction);
+			}
+			
 		}
+
+		
 		catch (const std::exception&)
 		{
 				//set exceptions
 		}
-	}
 
+		
+	}
+	cout << "Records Processed into Objects by Clinic - Transaction Log Updated" << endl;
 
 
 }
@@ -86,19 +103,50 @@ bool Transaction::FieldValidation()
 
 
 
-void Transaction::PrintTransactionSummary()
+void Transaction::PrintTransactionSummary(string type)
 {
 	cout << setw(50);
-	cout << " Hospital Transaction Listing" << endl;
-	//This can be split into types if necessary
-	cout << setw(15) << "Transaction ID " << setw(20) << "Transaction Type " << setw(25) << "Transaction Status " << setw(47) << "Transaction Desc. " << setw(27) << "Transaction Date/Time " << endl;
-	/*for (auto& i : v_transaction)
+	cout << "Heart Clinic Transactions" << endl;
+	cout << setw(15) << "Transaction ID " << setw(20) << "Transaction Type " << setw(25) << "Transaction Status " << setw(25) << "Transaction Desc. " << setw(27) << "Transaction Date/Time " << endl;
+	if (type == "HC")
 	{
-		if (i.transactionType == "Movie" && i.transactionStatus != "Error")
+		for (auto& i : transactionQueue)
 		{
-			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(47) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			if (i.transactionType == "HC" && i.transactionStatus != "Error")
+			{
+				cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			}
 		}
-	}*/
+		cout << endl;
+	}
+
+	if (type == "PS")
+	{
+		cout << "Plastic Surgery Clinic Transactions" << endl;
+		cout << setw(15) << "Transaction ID " << setw(20) << "Transaction Type " << setw(25) << "Transaction Status " << setw(25) << "Transaction Desc. " << setw(27) << "Transaction Date/Time " << endl;
+		for (auto& i : transactionQueue)
+		{
+			if (i.transactionType == "PS" && i.transactionStatus != "Error")
+			{
+				cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			}
+		}
+		cout << endl;
+	}
+	if (type == "PC")
+	{
+		cout << "Pulminary Clinic Transactions" << endl;
+		cout << setw(15) << "Transaction ID " << setw(20) << "Transaction Type " << setw(25) << "Transaction Status " << setw(25) << "Transaction Desc. " << setw(27) << "Transaction Date/Time " << endl;
+		for (auto& i : transactionQueue)
+		{
+			if (i.transactionType == "PC" && i.transactionStatus != "Error")
+			{
+				cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			}
+		}
+		cout << endl;
+	}
+
 
 }
 
@@ -107,52 +155,44 @@ void Transaction::PrintErrorLog()
 	cout << setw(50);
 	cout << "Transaction Error Log" << endl;
 	//This can be split into types if necessary
-	cout << setw(15) << "Transaction ID" << setw(20) << "Transaction Type" << setw(25) << "Transaction Status" << setw(67) << "Transaction Desc." << setw(27) << "Transaction Date/Time" << endl;
-	/*for (auto& i : v_transaction)
+	cout << setw(15) << "Transaction ID" << setw(20) << "Transaction Type" << setw(25) << "Transaction Status" << setw(25) << "Transaction Desc." << setw(27) << "Transaction Date/Time" << endl;
+	for (auto& i : transactionQueue)
 	{
-		if (i.transactionType == "Movie" && i.transactionStatus == "Error")
+		if (i.transactionStatus == "Error")
 		{
-			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(67) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
 		}
-	}*/
+	}
 }
 
-void Transaction::AddTransactionToErrorLog()
+void Transaction::AddTransactionToErrorLog(string record, string description, string clinicType, Transaction& transaction)
 {
 	time_t rawtime;
 	struct tm timeinfo;
 	time(&rawtime);
 	localtime_s(&timeinfo, &rawtime);
-	string rawData;
-	//..This can be updated once we have a valid vector for transactions
-
-	/*movie.GetSingleRecord(rawData);
-	l_objTransaction.transactionId = v_transaction.size() + 1;
-	l_objTransaction.transactionType = type;
-	l_objTransaction.transactionStatus = "Error";
-	l_objTransaction.transactionDescription = error;
-	l_objTransaction.transactionRecord = rawData;
-	l_objTransaction.transactionDateTime = to_string(timeinfo.tm_mon + 1) + "." + to_string(timeinfo.tm_mday) + "." + to_string(1900 + timeinfo.tm_year)
+	obj_transaction.transactionId = transactionQueue.size() + 1;
+	obj_transaction.transactionType = clinicType;
+	obj_transaction.transactionStatus = "Error";
+	obj_transaction.transactionDescription = description;
+	obj_transaction.transactionRecord = record;
+	obj_transaction.transactionDateTime = to_string(timeinfo.tm_mon + 1) + "." + to_string(timeinfo.tm_mday) + "." + to_string(1900 + timeinfo.tm_year)
 		+ " - " + to_string(timeinfo.tm_hour) + ":" + to_string(timeinfo.tm_min) + ":" + to_string(timeinfo.tm_sec);
-	v_transaction.push_back(l_objTransaction);*/
+	transaction.transactionQueue.push_back(obj_transaction);
 }
 
-void Transaction::AddTransactionToLog()
+void Transaction::AddTransactionToLog(string record, string description, string clinicType, Transaction& transaction)
 {
 	time_t rawtime;
 	struct tm timeinfo;
 	time(&rawtime);
 	localtime_s(&timeinfo, &rawtime);
-	string rawData;
-	//..This can be updated once we have a valid vector for transactions
-
-	/*movie.GetSingleRecord(rawData);
-	l_objTransaction.transactionId = v_transaction.size() + 1;
-	l_objTransaction.transactionType = type;
-	l_objTransaction.transactionStatus = "Successful";
-	l_objTransaction.transactionDescription = movie.GetTitle();
-	l_objTransaction.transactionRecord = rawData;
-	l_objTransaction.transactionDateTime = to_string(timeinfo.tm_mon + 1) + "." + to_string(timeinfo.tm_mday) + "." + to_string(1900 + timeinfo.tm_year)
+	obj_transaction.transactionId = transactionQueue.size() + 1;
+	obj_transaction.transactionType = clinicType;
+	obj_transaction.transactionStatus = "Successful";
+	obj_transaction.transactionDescription = description;
+	obj_transaction.transactionRecord = record;
+	obj_transaction.transactionDateTime = to_string(timeinfo.tm_mon + 1) + "." + to_string(timeinfo.tm_mday) + "." + to_string(1900 + timeinfo.tm_year)
 		+ " - " + to_string(timeinfo.tm_hour) + ":" + to_string(timeinfo.tm_min) + ":" + to_string(timeinfo.tm_sec);
-	v_transaction.push_back(l_objTransaction);*/
+	transaction.transactionQueue.push_back(obj_transaction);
 }
