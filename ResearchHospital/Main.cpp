@@ -87,7 +87,7 @@ int main()
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
-								//patient.CancelPatient("HC");
+								patient.CancelPatient(0);
 								break;
 								//List Patients in Queue
 							case '5':
@@ -153,6 +153,7 @@ int main()
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
+								patient.CancelPatient(1);
 								break;
 								//List Patients in Queue
 							case '5':
@@ -216,7 +217,7 @@ int main()
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
-								
+								patient.CancelPatient(2);
 								break;
 								//List Patients in Queue
 							case '5':
