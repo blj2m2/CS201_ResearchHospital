@@ -72,22 +72,27 @@ int main()
 								//Add Patient
 							case '1':
 								cout << "Add patient placeholder" << endl;
+								//patient.AddPatient("HC");
 								break;
 								//Add Critical Patient
 							case '2':
 								cout << "Add critical patient placeholder" << endl;
+								//patient.AddCriticalPatient("HC", "critial");
 								break;
 								//Take out Patient for Operation
 							case '3':
 								cout << "Take out patient for operation placeholder" << endl;
+								//patient.RemoveForOperation("HC", "ssn", "remove");
 								break;
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
+								//patient.CancelPatient("HC", "SSN", "Cancel");
 								break;
 								//List Patients in Queue
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
+								//patient.ListPatient("HC");
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
