@@ -43,49 +43,32 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			{
 				break;
 			}
-			if (i[0]== "HC")
+			if ((i[0] == "HC") || (i[0] == "PC") || (i[0] == "PS"))
 			{
 				obj_patient.SetFirst(i[1]);
 				obj_patient.SetLast(i[2]);
 				obj_patient.SetSSN(i[3]);
+				if ((typeid(obj_patient.SetFirst(i[1])) != typeid(string)) || (typeid(obj_patient.SetLast(i[2])) != typeid(string)) || (typeid(obj_patient.SetSSN(i[3])) != typeid(int))) {
+					throw i;
+				}
 				patients.patientQueue.at(0).push_back(obj_patient);
-				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
-				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToLog(rawData, description, i[0], transaction);
-			}
-			else if (i[0] == "PC")
-			{
-				obj_patient.SetFirst(i[1]);
-				obj_patient.SetLast(i[2]);
-				obj_patient.SetSSN(i[3]);
-				patients.patientQueue.at(1).push_back(obj_patient);
-				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
-				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToLog(rawData, description, i[0], transaction);
-			}
-			else if (i[0] == "PS")
-			{
-				obj_patient.SetFirst(i[1]);
-				obj_patient.SetLast(i[2]);
-				obj_patient.SetSSN(i[3]);
-				patients.patientQueue.at(2).push_back(obj_patient);
 				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
 				string description = i[0] + " - " + i[1] + i[2];
 				AddTransactionToLog(rawData, description, i[0], transaction);
 			}
 			else
 			{
-				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
-				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToErrorLog(rawData, description, i[0], transaction);
+				throw i;
 			}
-			
 		}
 
-		
-		catch (const std::exception&)
+
+		catch (const std::exception& i)
 		{
-				//set exceptions
+			//set exceptions
+			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+			string description = i[0] + " - " + i[1] + i[2];
+			AddTransactionToErrorLog(rawData, description, i[0], transaction);
 		}
 
 		
