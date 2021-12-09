@@ -38,6 +38,7 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			//Heart Clinic
 			//Plastic Surgery
 			//Pulminary clinic
+
 			if (i[0]== "Q")
 			{
 				break;
