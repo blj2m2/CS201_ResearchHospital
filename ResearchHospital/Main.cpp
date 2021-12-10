@@ -87,13 +87,13 @@ int main()
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
-								patient.CancelPatient(0);
+								//patient.CancelPatient(0);
 								break;
 								//List Patients in Queue
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
 								//patient.ListPatient("HC");
-								ListPatient(patient.patientQueue);
+								//ListPatient(patient.patientQueue);
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
@@ -154,12 +154,12 @@ int main()
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
-								patient.CancelPatient(1);
+								//patient.CancelPatient(1);
 								break;
 								//List Patients in Queue
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
-								ListPatient(patient.patientQueue);
+								//ListPatient(patient.patientQueue);
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
@@ -219,12 +219,12 @@ int main()
 								//Cancel Patient
 							case '4':
 								cout << "Cancel patient placeholder" << endl;
-								patient.CancelPatient(2);
+								//patient.CancelPatient(2);
 								break;
 								//List Patients in Queue
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
-								ListPatient(patient.patientQueue);
+								//ListPatient(patient.patientQueue);
 								break;
 							case '6':
 								//Change Patients in Queue or Exit

@@ -1,3 +1,5 @@
+#include <iostream>
+#include <iomanip>
 #include "Patient.h"
 using namespace std;
 
@@ -7,11 +9,11 @@ Patient::Patient(){
   ssn = " ";
 }
 
-Patient::Patient(string first_t, string last_t, string ssn_t){
-  first = first_t;
-  last = last_t;
-  ssn = ssn_t;
-}
+//Patient::Patient(string first_t, string last_t, string ssn_t){
+//  first = first_t;
+//  last = last_t;
+//  ssn = ssn_t;
+//}
 vector<vector<Patient>> Patient::patientQueue = {{},{},{}};
 
 string Patient::GetFirst(){return first;}
@@ -57,7 +59,7 @@ void Patient::AddPatient(string clinic){
       cout << "Invalid SSN given\n";
     }
     else{
-      patientQueue.at(index).push_back(Patient(first_t, last_t, ssn_t, status_t));
+      //patientQueue.at(index).push_back(Patient(first_t, last_t, ssn_t, status_t));
     }
   }
 
@@ -80,8 +82,8 @@ void Patient::AddCriticalPatient(string clinic){
   if(index < 0 || index > 2){//invalid clinic index, not 0,1, or 2
     cout << "Invalid Clinic\n";
   }
-  else if(patientQueue.size() == 10 && patientQueue.at(index).at(9).GetStatus() == "critical"){//patientQueue is full and all patients are critical
-    cout << "Clinic is at capacity\n";
+  //else if(patientQueue.size() == 10 && patientQueue.at(index).at(9).GetStatus() == "critical"){//patientQueue is full and all patients are critical
+  //  cout << "Clinic is at capacity\n";
   }
   else{
     //input for first, last, ssn, and status
@@ -144,17 +146,17 @@ void Patient::CancelPatient(string clinic){
 }
 
 
-void Patient::ListPatient(vector<Transaction> transactionQueue){
-
-	
-		for (auto& i : transactionQueue)
-		{
-		
-			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
-			
-		}
-		cout << endl;
-	
-
-}
+//void Patient::ListPatient(vector<Transaction> transactionQueue){
+//
+//	
+//		for (auto& i : transactionQueue)
+//		{
+//		
+//			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+//			
+//		}
+//		cout << endl;
+//	
+//
+//}
 //void Patient::ChangeDepartment(){}
