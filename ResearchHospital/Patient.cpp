@@ -25,8 +25,94 @@ void Patient::SetLast(string last_t){last = last_t;}
 void Patient::SetSSN(string ssn_t){ssn = ssn_t;}
 void Patient::SetPatientQueue(vector<vector<Patient>> patientQueue_t){patientQueue = patientQueue_t;}
 
-void Patient::AddPatient(){}
-void Patient::AddCriticalPatient(){}
+void Patient::AddPatient(string clinic){
+  int index;//index of clinic
+  if(clinic == "HC"){// HC == heart clinic
+    index = 0;
+  }
+  else if(clinic == "PS"){//PS == plastic surgery
+    index = 1;
+  }
+  else if(clinic == "PC"){//PC == lung clinic
+    index = 2;
+  }
+
+  if(index < 0 || index > 2){
+    cout << "Invalid Clinic\n";
+  }
+  else if(patientQueue.size() == 10){
+    cout << "Clinic is at capacity\n";
+  }
+  else if (index >= 0 && index <= 2){
+    string first_t, last_t, ssn_t, status_t;
+    cout << "Enter Status:\n";
+    cin >> status_t;
+    cout << "Enter First Name:\n";
+    cin >> first_t;
+    cout << "Enter Last Name:\n";
+    cin >> last_t;
+    cout << "Enter SSN:\n";
+    cin >> ssn_t;
+
+    if(ssn_t == ""){
+      cout << "Invalid SSN given\n";
+    }
+    else{
+      patientQueue.at(index).push_back(Patient(first_t, last_t, ssn_t, status_t));
+    }
+  }
+
+}
+
+
+void Patient::AddCriticalPatient(string clinic){
+  int index;//index of clinic
+  int indexCritical;//index of last critical status patient in queue
+  if(clinic == "HC"){//HC == heart clinic
+    index = 0;
+  }
+  else if(clinic == "PS"){//PS == plastic surgery
+    index = 1;
+  }
+  else if(clinic == "PC"){//PC == lung clinic
+    index = 2;
+  }
+
+  if(index < 0 || index > 2){//invalid clinic index, not 0,1, or 2
+    cout << "Invalid Clinic\n";
+  }
+  else if(patientQueue.size() == 10 && patientQueue.at(index).at(9).GetStatus() == "critical"){//patientQueue is full and all patients are critical
+    cout << "Clinic is at capacity\n";
+  }
+  else{
+    //input for first, last, ssn, and status
+    string first_t, last_t, ssn_t, status_t;
+    cout << "Enter Status:\n";
+    cin >> status_t;
+    cout << "Enter First Name:\n";
+    cin >> first_t;
+    cout << "Enter Last Name:\n";
+    cin >> last_t;
+    cout << "Enter SSN:\n";
+    cin >> ssn_t;
+
+    if(ssn_t == ""){//invalid ssn
+      cout << "Invalid SSN given\n";
+    }
+    else{
+      for(int i = 0; i < patientQueue.size(); i++){//finds last occurence of status == critical
+        if(patientQueue.at(index).at(i).GetStatus() != status_t){
+          indexCritical = i;
+          break;
+        }
+      }
+      patientQueue.at(index).pop_back();// removing non-critical patient from last position of patientQueue
+      cout << patientQueue.at(index).at(9).GetSSN() << " removed to make room for critical patient\n";
+
+    }
+  }
+
+}
 void Patient::RemoveForOperation(){}
 
 
