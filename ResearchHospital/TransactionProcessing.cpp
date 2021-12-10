@@ -54,7 +54,7 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 				obj_patient.SetSSN(i[3]);
 				interger = stoi(obj_patient.SetSSN(i[3]));
 				if ((typeid(obj_patient.SetFirst(i[1])) != typeid(string)) || (typeid(obj_patient.SetLast(i[2])) != typeid(string)) || (typeid(interger)) != typeid(int))) {
-				throw a;
+				;
 				}
 				patients.patientQueue.at(0).push_back(obj_patient);
 				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];

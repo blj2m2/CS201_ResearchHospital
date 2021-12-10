@@ -34,7 +34,7 @@ class Patient
   void AddCriticalPatient(string clinic);
   void RemoveForOperation();
   void CancelPatient(string clinic);
-  void ListPatient();
+  void ListPatient(vector<Tranaction>);
   //void ChangeDepartment(); function in Main
 
   
