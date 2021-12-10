@@ -15,6 +15,7 @@ class Patient
   
   public:
   Patient();
+  Patient(string first_t, string last_t, string ssn_t, string status_t);
 
 
   static vector<vector<Patient>> patientQueue;
