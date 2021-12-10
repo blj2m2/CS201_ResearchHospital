@@ -22,13 +22,13 @@ class Patient
   string GetFirst();
   string GetLast();
   string GetSSN();
- // string GetStatus();
+  string GetStatus();
   vector<vector<Patient>> GetPatientQueue();
 
   void SetFirst(string first_t);
   void SetLast(string last_t);
   void SetSSN(string ssn_t);
-  //void SetStatus(string status_t);
+  void SetStatus(string status_t);
   void SetPatientQueue(vector<vector<Patient>> patientQueue_t);
   
   void AddPatient(string clinic);

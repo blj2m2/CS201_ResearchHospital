@@ -83,8 +83,8 @@ void Patient::AddCriticalPatient(string clinic){
   if(index < 0 || index > 2){//invalid clinic index, not 0,1, or 2
     cout << "Invalid Clinic\n";
   }
-  //else if(patientQueue.size() == 10 && patientQueue.at(index).at(9).GetStatus() == "critical"){//patientQueue is full and all patients are critical
-  //  cout << "Clinic is at capacity\n";
+  else if(patientQueue.size() == 10 && patientQueue.at(index).at(9).GetStatus() == "critical"){//patientQueue is full and all patients are critical
+    cout << "Clinic is at capacity\n";
   }
   else{
     //input for first, last, ssn, and status
