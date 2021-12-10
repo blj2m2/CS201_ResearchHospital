@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 #include <sstream>
 #include <typeinfo>
 #include <iomanip>

@@ -143,5 +143,17 @@ void Patient::CancelPatient(string clinic){
 }
 
 
-void Patient::ListPatient(){}
+void Patient::ListPatient(vector<Transaction> transactionQueue){
+
+	
+		for (auto& i : transactionQueue)
+		{
+		
+			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			
+		}
+		cout << endl;
+	
+
+}
 //void Patient::ChangeDepartment(){}
