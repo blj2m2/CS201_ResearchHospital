@@ -1,10 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <typeinfo>
 #include <iomanip>
 #include <fstream>
 #include <exception>
 #include "TransactionProcessing.h"
+
+using namespace std;
 
 Patient obj_patient;
 Transaction obj_transaction;
@@ -45,11 +48,13 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			}
 			if ((i[0] == "HC") || (i[0] == "PC") || (i[0] == "PS"))
 			{
+				int interger;
 				obj_patient.SetFirst(i[1]);
 				obj_patient.SetLast(i[2]);
 				obj_patient.SetSSN(i[3]);
-				if ((typeid(obj_patient.SetFirst(i[1])) != typeid(string)) || (typeid(obj_patient.SetLast(i[2])) != typeid(string)) || (typeid(obj_patient.SetSSN(i[3])) != typeid(int))) {
-					throw i;
+				interger = stoi(obj_patient.SetSSN(i[3]));
+				if ((typeid(obj_patient.SetFirst(i[1])) != typeid(string)) || (typeid(obj_patient.SetLast(i[2])) != typeid(string)) || (typeid(interger)) != typeid(int))) {
+				throw a;
 				}
 				patients.patientQueue.at(0).push_back(obj_patient);
 				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
@@ -58,12 +63,12 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			}
 			else
 			{
-				throw i;
+				throw a;
 			}
 		}
 
 
-		catch (const std::exception& i)
+		catch (const std::exception& a)
 		{
 			//set exceptions
 			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
