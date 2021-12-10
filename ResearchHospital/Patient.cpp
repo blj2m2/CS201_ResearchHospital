@@ -7,13 +7,15 @@ Patient::Patient(){
   first = " ";
   last = " ";
   ssn = " ";
+  status = " ";
 }
 
-//Patient::Patient(string first_t, string last_t, string ssn_t){
-//  first = first_t;
-//  last = last_t;
-//  ssn = ssn_t;
-//}
+Patient::Patient(string first_t, string last_t, string ssn_t, string status){
+  first = first_t;
+  last = last_t;
+  ssn = ssn_t;
+  status = status_t;
+}
 vector<vector<Patient>> Patient::patientQueue = {{},{},{}};
 
 string Patient::GetFirst(){return first;}
