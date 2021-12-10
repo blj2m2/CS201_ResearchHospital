@@ -5,15 +5,14 @@ Patient::Patient(){
   first = " ";
   last = " ";
   ssn = " ";
-  patientQueue = { {},{},{} };
 }
 
-Patient::Patient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue){
+Patient::Patient(string first_t, string last_t, string ssn_t){
   first = first_t;
   last = last_t;
   ssn = ssn_t;
-  patientQueue = patientQueue;
 }
+vector<vector<Patient>> Patient::patientQueue = {{},{},{}};
 
 string Patient::GetFirst(){return first;}
 string Patient::GetLast(){return last;}
