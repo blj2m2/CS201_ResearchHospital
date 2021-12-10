@@ -91,9 +91,9 @@ int main()
 								break;
 								//List Patients in Queue
 							case '5':
-								cout << "List patients in queue placeholder" << endl;
-								//patient.ListPatient("HC");
-								//ListPatient(patient.patientQueue);
+								transaction.PrintTransactionSummary("HC");
+								cout << endl;
+								PrintDepartmentMenu("Heart Clinic");
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
@@ -158,8 +158,9 @@ int main()
 								break;
 								//List Patients in Queue
 							case '5':
-								cout << "List patients in queue placeholder" << endl;
-								//ListPatient(patient.patientQueue);
+								transaction.PrintTransactionSummary("PC");
+								cout << endl;
+								PrintDepartmentMenu("Pulminary Clinic");
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
@@ -223,8 +224,9 @@ int main()
 								break;
 								//List Patients in Queue
 							case '5':
-								cout << "List patients in queue placeholder" << endl;
-								//ListPatient(patient.patientQueue);
+								transaction.PrintTransactionSummary("PS");
+								cout << endl;
+								PrintDepartmentMenu("Plastic Surgery Clinic");
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
