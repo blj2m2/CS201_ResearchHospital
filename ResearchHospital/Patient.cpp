@@ -19,6 +19,7 @@ vector<vector<Patient>> Patient::patientQueue = {{},{},{}};
 string Patient::GetFirst(){return first;}
 string Patient::GetLast(){return last;}
 string Patient::GetSSN(){return ssn;}
+string Patient::GetStatus(){return status;}
 vector<vector<Patient>> Patient::GetPatientQueue(){return patientQueue;}
 
 void Patient::SetFirst(string first_t){first = first_t;}
