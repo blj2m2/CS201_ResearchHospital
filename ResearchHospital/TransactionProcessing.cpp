@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <sstream>
 #include <iomanip>
 #include <fstream>
 #include <exception>
+#include <typeinfo>
 #include "TransactionProcessing.h"
 
 Patient obj_patient;
@@ -42,49 +44,58 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			{
 				break;
 			}
-			if (i[0]== "HC")
+
+			if ((i[0] == "HC") || (i[0] == "PC") || (i[0] == "PS"))
 			{
-				obj_patient.SetFirst(i[1]);
-				obj_patient.SetLast(i[2]);
-				obj_patient.SetSSN(i[3]);
+				if (FieldValidation("string", i[1]))
+				{
+					obj_patient.SetFirst(i[1]);
+				}
+				else
+				{
+					throw  invalid_argument("Invalid Argument - Expected String");
+				}
+				if (FieldValidation("string", i[2]))
+				{
+					obj_patient.SetLast(i[2]);
+				}
+				else
+				{
+					throw  invalid_argument("Invalid Argument - Expected String");
+				}
+				if (FieldValidation("integer", i[3]))
+				{
+					obj_patient.SetSSN(i[3]);
+				}
+				else
+				{
+					throw  invalid_argument("Invalid Argument - Expected Integer");
+				}
+				
 				patients.patientQueue.at(0).push_back(obj_patient);
-				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
-				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToLog(rawData, description, i[0], transaction);
-			}
-			else if (i[0] == "PC")
-			{
-				obj_patient.SetFirst(i[1]);
-				obj_patient.SetLast(i[2]);
-				obj_patient.SetSSN(i[3]);
-				patients.patientQueue.at(1).push_back(obj_patient);
-				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
-				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToLog(rawData, description, i[0], transaction);
-			}
-			else if (i[0] == "PS")
-			{
-				obj_patient.SetFirst(i[1]);
-				obj_patient.SetLast(i[2]);
-				obj_patient.SetSSN(i[3]);
-				patients.patientQueue.at(2).push_back(obj_patient);
 				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
 				string description = i[0] + " - " + i[1] + i[2];
 				AddTransactionToLog(rawData, description, i[0], transaction);
 			}
 			else
 			{
-				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
-				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToErrorLog(rawData, description, i[0], transaction);
+				throw  invalid_argument("Invalid Argument - Invalid Clinic Type");
 			}
-			
 		}
 
-		
-		catch (const std::exception&)
+		catch (invalid_argument& e)
 		{
-				//set exceptions
+			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+			string error;
+			error += e.what();
+			AddTransactionToErrorLog(rawData, error, i[0], transaction);
+		}
+		catch (runtime_error& e)
+		{
+			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+			string error;
+			error += e.what();
+			AddTransactionToErrorLog(rawData, error, i[0], transaction);
 		}
 
 		
@@ -94,11 +105,34 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 
 }
 
-bool Transaction::FieldValidation()
+bool Transaction::FieldValidation(string dataType, string field)
 {
+	if (dataType == "integer")
+	{
+		for (int i = 0; i < field.length(); i++)
+			if (!isdigit(field[i]))
+				return false;
+			else
+			{
+				return true;
+			}
+	}
+	else if (dataType == "string")
+	{
+		for (int i = 0; i < field.length(); i++)
+			if (!isalpha(field[i]))
+				return false;
+			else
+			{
+				return true;
+			}
+	}
+
 	
-	//field level validation can be added as part of processing each record.
-	return false;
+
+
+
+	
 }
 
 
@@ -155,12 +189,12 @@ void Transaction::PrintErrorLog()
 	cout << setw(50);
 	cout << "Transaction Error Log" << endl;
 	//This can be split into types if necessary
-	cout << setw(15) << "Transaction ID" << setw(20) << "Transaction Type" << setw(25) << "Transaction Status" << setw(25) << "Transaction Desc." << setw(27) << "Transaction Date/Time" << endl;
+	cout << setw(15) << "Transaction ID" << setw(20) << "Transaction Type" << setw(25) << "Transaction Status" << setw(45) << "Transaction Desc." << setw(30) << "Transaction Date/Time" << endl;
 	for (auto& i : transactionQueue)
 	{
 		if (i.transactionStatus == "Error")
 		{
-			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(25) << i.transactionDescription << setw(27) << i.transactionDateTime << endl;
+			cout << setw(14) << i.transactionId << setw(20) << i.transactionType << setw(25) << i.transactionStatus << setw(45) << i.transactionDescription << setw(30) << i.transactionDateTime << endl;
 		}
 	}
 }

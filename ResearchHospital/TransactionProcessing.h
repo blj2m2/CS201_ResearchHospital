@@ -35,7 +35,7 @@ public:
 	vector <Transaction> transactionQueue;
 
 	void ProcessFileData(vector<vector<string>>&, Patient&, Transaction&);
-	bool FieldValidation();
+	bool FieldValidation(string dataType, string field);
 	void PrintTransactionSummary(string);
 	void PrintErrorLog();
 	void AddTransactionToErrorLog(string, string, string, Transaction&);
