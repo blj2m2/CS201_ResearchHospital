@@ -31,7 +31,7 @@ class Patient
   void AddCriticalPatient();
   void RemoveForOperation();
   void CancelPatient();
-  void ListPatient();
+  void ListPatient(vector<Transaction> transactionQueue);
   void ChangeDepartment();
   
   void CancelPatient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue);

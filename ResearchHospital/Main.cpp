@@ -93,6 +93,7 @@ int main()
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
 								//patient.ListPatient("HC");
+								ListPatient(patient.patientQueue);
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
@@ -158,6 +159,7 @@ int main()
 								//List Patients in Queue
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
+								ListPatient(patient.patientQueue);
 								break;
 							case '6':
 								//Change Patients in Queue or Exit
@@ -222,6 +224,7 @@ int main()
 								//List Patients in Queue
 							case '5':
 								cout << "List patients in queue placeholder" << endl;
+								ListPatient(patient.patientQueue);
 								break;
 							case '6':
 								//Change Patients in Queue or Exit

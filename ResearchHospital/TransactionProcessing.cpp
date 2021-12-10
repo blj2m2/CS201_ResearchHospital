@@ -1,10 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 #include <sstream>
 #include <iomanip>
 #include <fstream>
 #include <exception>
 #include "TransactionProcessing.h"
+
+using namespace std;
 
 Patient obj_patient;
 Transaction obj_transaction;
