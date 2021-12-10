@@ -5,15 +5,14 @@ Patient::Patient(){
   first = " ";
   last = " ";
   ssn = " ";
-  patientQueue = { {},{},{} };
 }
 
-Patient::Patient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue){
+Patient::Patient(string first_t, string last_t, string ssn_t){
   first = first_t;
   last = last_t;
   ssn = ssn_t;
-  patientQueue = patientQueue;
 }
+vector<vector<Patient>> Patient::patientQueue = {{},{},{}};
 
 string Patient::GetFirst(){return first;}
 string Patient::GetLast(){return last;}
@@ -100,15 +99,17 @@ void Patient::AddCriticalPatient(string clinic){
       cout << "Invalid SSN given\n";
     }
     else{
+      vector<Patient> patientQueue_t = {};
+      bool flag = true;//set to false so for loop doesnt change indexCritical after initial critical status
       for(int i = 0; i < patientQueue.size(); i++){//finds last occurence of status == critical
-        if(patientQueue.at(index).at(i).GetStatus() != status_t){
+        if(patientQueue.at(index).at(i).GetStatus() != status_t && flag){
           indexCritical = i;
-          break;
+          flag = false;
+          patientQueue.at(index).pop_back();
+          cout << "Non critical patient removed from end of queue\n";
         }
       }
-      patientQueue.at(index).pop_back();// removing non-critical patient from last position of patientQueue
-      cout << patientQueue.at(index).at(9).GetSSN() << " removed to make room for critical patient\n";
-
+      patientQueue.at(index).insert(patientQueue.at(index).begin() + indexCritical, Patient(first_t,last_t,ssn_t, status_t));
     }
   }
 
