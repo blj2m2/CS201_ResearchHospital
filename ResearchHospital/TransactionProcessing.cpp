@@ -2,7 +2,6 @@
 #include <vector>
 #include <typeinfo>
 #include <sstream>
-#include <typeinfo>
 #include <iomanip>
 #include <fstream>
 #include <exception>
