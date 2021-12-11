@@ -71,13 +71,13 @@ int main()
 							{
 								//Add Patient
 							case '1':
-								cout << "Add patient placeholder" << endl;
-								//patient.AddPatient("HC");
+						
+								patient.AddPatient("HC");
 								break;
 								//Add Critical Patient
 							case '2':
-								cout << "Add critical patient placeholder" << endl;
-								//patient.AddCriticalPatient("HC");
+							
+								patient.AddCriticalPatient("HC");
 								break;
 								//Take out Patient for Operation
 							case '3':
@@ -141,11 +141,13 @@ int main()
 							{
 								//Add Patient
 							case '1':
-								cout << "Add patient placeholder" << endl;
+							
+								patient.AddPatient("PC");
 								break;
 								//Add Critical Patient
 							case '2':
-								cout << "Add critical patient placeholder" << endl;
+								
+								patient.AddCriticalPatient("PC");
 								break;
 								//Take out Patient for Operation
 							case '3':
@@ -207,11 +209,13 @@ int main()
 							{
 								//Add Patient
 							case '1':
-								cout << "Add patient placeholder" << endl;
+								
+								patient.AddPatient("PS");
 								break;
 								//Add Critical Patient
 							case '2':
-								cout << "Add critical patient placeholder" << endl;
+							
+								patient.AddCriticalPatient("PS");
 								break;
 								//Take out Patient for Operation
 							case '3':

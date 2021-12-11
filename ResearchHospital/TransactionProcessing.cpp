@@ -5,8 +5,9 @@
 #include <iomanip>
 #include <fstream>
 #include <exception>
-#include <typeinfo>
 #include "TransactionProcessing.h"
+
+using namespace std;
 
 Patient obj_patient;
 Transaction obj_transaction;
@@ -72,10 +73,12 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 					throw  invalid_argument("Invalid Argument - Expected Integer");
 				}
 				
-				patients.patientQueue.at(0).push_back(obj_patient);
+				patients.patientQueue.push_back(obj_patient);
+				
+
 				string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
 				string description = i[0] + " - " + i[1] + i[2];
-				AddTransactionToLog(rawData, description, i[0], transaction);
+				transaction.AddTransactionToLog(rawData, description, i[0], transaction);
 			}
 			else
 			{
@@ -88,14 +91,22 @@ void Transaction::ProcessFileData(vector<vector<string>>& records, Patient& pati
 			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
 			string error;
 			error += e.what();
-			AddTransactionToErrorLog(rawData, error, i[0], transaction);
+			transaction.AddTransactionToErrorLog(rawData, error, i[0], transaction);
 		}
 		catch (runtime_error& e)
 		{
 			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
 			string error;
 			error += e.what();
-			AddTransactionToErrorLog(rawData, error, i[0], transaction);
+			transaction.AddTransactionToErrorLog(rawData, error, i[0], transaction);
+		}
+		catch (out_of_range& e)
+		{
+			string rawData = i[0] + "," + i[1] + "," + i[2] + "," + i[3];
+			string error;
+			error += e.what();
+			transaction.AddTransactionToErrorLog(rawData, error, i[0], transaction);
+	
 		}
 
 		
@@ -109,30 +120,28 @@ bool Transaction::FieldValidation(string dataType, string field)
 {
 	if (dataType == "integer")
 	{
-		for (int i = 0; i < field.length(); i++)
-			if (!isdigit(field[i]))
-				return false;
-			else
+		for (auto& i : field)
+		{
+			if (!isdigit(i))
 			{
-				return true;
+				return false;
 			}
+		}
+			
 	}
 	else if (dataType == "string")
 	{
-		for (int i = 0; i < field.length(); i++)
-			if (!isalpha(field[i]))
-				return false;
-			else
+		for (auto& i : field)
+		{
+			if (!isalpha(i))
 			{
-				return true;
+				return false;
 			}
+		}
+
 	}
+	return true;
 
-	
-
-
-
-	
 }
 
 

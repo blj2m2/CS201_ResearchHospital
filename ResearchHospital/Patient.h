@@ -15,20 +15,20 @@ class Patient
   public:
   Patient();
   Patient(string first_t, string last_t, string ssn_t, string);
-  Patient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue);
-  vector<vector<Patient>> patientQueue;
+  Patient(string first_t, string last_t, string ssn_t, vector<Patient>patientQueue);
+  vector<Patient> patientQueue;
 
   string GetFirst();
   string GetLast();
   string GetSSN();
   string GetStatus();
-  vector<vector<Patient>> GetPatientQueue();
+  //vector<Patient> GetPatientQueue();
 
   void SetFirst(string first_t);
   void SetLast(string last_t);
   void SetSSN(string ssn_t);
   void SetStatus(string status_t);
-  void SetPatientQueue(vector<vector<Patient>> patientQueue_t);
+  //void SetPatientQueue(vector<Patient> patientQueue_t);
   
   void AddPatient(string);
   void AddCriticalPatient(string);
@@ -37,7 +37,7 @@ class Patient
 
 
   
-  void CancelPatient(string first_t, string last_t, string ssn_t, vector<vector<Patient>> patientQueue);
+  void CancelPatient(string first_t, string last_t, string ssn_t, vector<Patient> patientQueue);
 };
 
 
